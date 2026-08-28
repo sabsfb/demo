@@ -47,27 +47,34 @@ jobs:
       - run: ruff check .
 
   # ---------------------------------------------------------------------------
-  # Gate 2 — unit / api tests with coverage. Always runs on push & PR.
+  # Gate 2 — sanity checks for this static-site demo.
+  # In a real Python project this would be: pip install -e . pytest pytest-cov
   # ---------------------------------------------------------------------------
   test-fast:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-      - run: python -m pip install -e . pytest pytest-cov
-      - run: pytest -m "not mutation" --cov=src
+      - name: Static site sanity check
+        run: |
+          test -f index.html || (echo "missing index.html" && exit 1)
+          test -f README.md || (echo "missing README.md" && exit 1)
+          test -d docs     || (echo "missing docs/" && exit 1)
+          echo "Static site files are present."
 
   # ---------------------------------------------------------------------------
-  # Gate 3 — coverage summary / artifact. Depends on tests passing.
+  # Gate 3 — coverage summary / artifact placeholder.
+  # In a real Python project this would upload pytest-cov results.
   # ---------------------------------------------------------------------------
   coverage-report:
     needs: [test-fast]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: echo "Upload coverage artifact or post a PR summary here."
+      - name: Site structure report
+        run: |
+          echo "Static site structure:"
+          find . -not -path './.git/*' -type f | sort
+          echo "Published site URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
 
   # ---------------------------------------------------------------------------
   # OPT-IN HEAVY JOB
@@ -85,9 +92,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - run: python -m pip install mutmut
-      - run: mutmut run --paths-to-mutate=src
-      - run: mutmut show
+      - name: Mutation testing placeholder
+        run: |
+          echo "This is a demo repository; there is no Python source to mutate."
+          echo "In a real Python project you would run:"
+          echo "  python -m pip install mutmut pytest-cov"
+          echo "  mutmut run --paths-to-mutate=src"
+          echo "  mutmut results"
+          echo "The opt-in toggle above is the reusable pattern being showcased."
 
   # ---------------------------------------------------------------------------
   # EXTENSION EXAMPLE (commented out so the demo stays lightweight & free):
