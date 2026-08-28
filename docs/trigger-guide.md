@@ -1,3 +1,7 @@
+---
+title: 如何手动触发变异测试
+---
+
 # 如何手动触发变异测试（run_mutation）
 
 这个 demo 的 `mutation-testing` job 默认不跑，只在你**手动勾选**时才运行。

@@ -191,7 +191,7 @@
       <line x1="350" y1="293" x2="465" y2="293" stroke="#57606a" stroke-width="1.5" marker-end="url(#arrow)"/>
     </svg>
     <div class="sec-note" style="margin-top:20px">
-      <strong>关键设计：</strong>变异测试（mutmut）计算量大、耗时长，不随每次 push 自动跑。通过 <code>workflow_dispatch</code> + 输入项 <code>run_mutation</code> 实现<strong>按需手动勾选</strong>——平时省 CI 时长，需要时手动触发全量变异。详见 <a href="docs/trigger-guide.md">变异测试触发指引</a>。
+      <strong>关键设计：</strong>变异测试（mutmut）计算量大、耗时长，不随每次 push 自动跑。通过 <code>workflow_dispatch</code> + 输入项 <code>run_mutation</code> 实现<strong>按需手动勾选</strong>——平时省 CI 时长，需要时手动触发全量变异。详见 <a href="docs/trigger-guide.html">变异测试触发指引</a>。
     </div>
   </section>
 
