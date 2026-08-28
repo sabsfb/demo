@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Secrets / local config
+.env
+.env.*
+*.local
+
+# Office temp lock files
+~$*
+
+# Build / run artifacts
+dist/
+build/
+output/
+coverage_html/
+htmlcov/
+
+# Editor
+.vscode/
+.idea/
+*.swp
