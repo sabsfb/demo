@@ -1,30 +1,34 @@
-# CI 实战 Demo：把「慢且非阻塞」的测试做成可手动勾选
+# 知识库文件预处理系统 · 测试工程展示（脱敏版）
 
-> 一个**脱敏后的 GitHub Actions 模板**，展示一个在真实项目里踩出来的 CI 优化技巧：
-> **让变异测试（mutation testing）这种又慢又非阻塞的 job，默认不跑，需要时手动勾一下才跑。**
+> 一个**完全脱敏**的 GitHub Pages 静态站点，展示某电力行业知识库文件预处理系统的完整测试工程：
+> 测试体系分层、CI/CD 架构、量化度量看板，以及**变异测试按需触发**这一核心 CI 优化技巧。
+>
+> 🔗 在线站点：`https://sabsfb.github.io/demo/`（启用 Pages 后生效）
 
-这个仓库**不含任何公司内部信息**——没有内网域名、没有业务文档名、没有缺陷编号。
-它脱胎于一个真实的内部文档预处理系统的 CI，但所有敏感内容都已替换为通用占位，可放心公开。
-
----
-
-## 为什么需要这个 pattern
-
-变异测试要跑全量变异体，动辄 **15–60 分钟**，而且本质是**质量参考指标，不是合并门禁**。
-如果把它挂在 `push` / `pull_request` 上自动跑：
-
-- 每一次普通提交都白烧 15–60 分钟 CI 时长；
-- 它失败也不会真卡住合并（非阻塞），却天天在浪费算力。
-
-正确做法：**默认不跑，按需手动触发。**
+本仓库**不含任何公司内部信息**——没有内网域名、没有真实业务文档名、没有安全缺陷利用细节、没有密钥。
+它脱胎于一个真实的内部文档预处理系统的测试工程，但所有敏感内容都已泛化，可放心公开。
 
 ---
 
-## 它怎么工作
+## 站点内容
 
-核心只有两处改动（都在 `.github/workflows/ci.yml`）：
+| 页面 / 章节 | 内容 |
+|---|---|
+| `index.html` | 项目概述、测试体系、CI 架构图、度量看板、变异测试说明、安全声明 |
+| `docs/test-strategy.md` | 脱敏测试策略：分层 / 已知问题 / 覆盖率 / 变异 / 度量 / 环境 |
+| `docs/trigger-guide.md` | 如何手动勾选触发变异测试（图文步骤） |
+| `.github/workflows/ci.yml` | 变异测试按需触发的 CI 模板（可直接复用） |
 
-### 1. 给手动触发加一个开关
+站点内导航锚点：`#overview` 项目概述 · `#system` 测试体系 · `#cicd` CI/CD 架构 · `#metrics` 度量看板 · `#mutation` 变异测试 · `#security` 安全声明
+
+---
+
+## CI 优化核心：变异测试按需触发
+
+变异测试（mutation testing）要跑全量变异体，动辄 **15–60 分钟**，且本质是**质量参考指标，不是合并门禁**。
+如果挂在 `push` / `pull_request` 上自动跑，每次普通提交都白烧大量 CI 时长。
+
+正确做法：**默认不跑，按需手动勾选。** 核心两处改动（见 `ci.yml`）：
 
 ```yaml
 on:
@@ -38,9 +42,6 @@ on:
         type: boolean
         default: false
 ```
-
-### 2. 给那个 job 加一个 `if` 条件
-
 ```yaml
   mutation-testing:
     runs-on: ubuntu-latest
@@ -48,49 +49,40 @@ on:
     timeout-minutes: 240
 ```
 
-效果：
-
 | 触发方式 | 变异测试跑吗 |
 |---|---|
 | 普通 `push` | ❌ 不跑 |
 | 开 `pull_request` | ❌ 不跑 |
-| 手动 `Run workflow` 且不勾选 | ❌ 不跑 |
+| 手动 `Run workflow` 不勾选 | ❌ 不跑 |
 | 手动 `Run workflow` **勾选 run_mutation** | ✅ 跑 |
 
-因为 `mutation-testing` 没有 `needs:` 依赖，跳过它**不会影响** lint / 测试等门禁 job。
+手动触发步骤见 [`docs/trigger-guide.md`](docs/trigger-guide.md)。
 
 ---
 
-## 怎么手动触发（见 `docs/trigger-guide.md`）
+## 本地预览
 
-1. 打开仓库 **Actions** 页
-2. 左侧选 **CI** workflow
-3. 点 **Run workflow**
-4. 勾选 **Run mutation testing**
-5. 再点 **Run workflow**
+纯静态站点，无需构建。直接双击 `index.html` 即可本地浏览器查看；或起一个本地服务：
 
----
-
-## 这个 demo 还顺手展示了什么
-
-- **分层门禁（fail-fast）**：`lint-and-security` → `test-fast` → `coverage-report`，低级问题先拦。
-- **`concurrency` 取消旧运行**：同一分支新提交进来时，自动取消上一次没跑完的 CI。
-- **扩展点注释**：`ci.yml` 末尾给出了"需要 LibreOffice/ImageMagick 的集成测试 job"的范例写法（默认注释掉，保持 demo 轻量免费）。
+```bash
+python -m http.server 8080
+# 浏览器打开 http://localhost:8080
+```
 
 ---
 
-## 适用场景
+## 启用 GitHub Pages（只需做一次）
 
-- 变异测试、大规模性能压测、重型 e2e 等**慢且非阻塞**的 job；
-- 想保留"可审计的质量趋势记录"，但不想每次提交都付时间成本。
+1. 进入仓库 **Settings** → 左侧 **Pages**；
+2. **Build and deployment** → Source 选 **Deploy from a branch**；
+3. Branch 选 **main**，目录选 **/ (root)**，点 **Save**；
+4. 等待约 1 分钟，访问 `https://sabsfb.github.io/demo/` 即可看到本站。
 
-## 不适用
-
-- 合并门禁类测试（单测、lint、安全扫描）——这些应该**每次都跑**，别用这个 pattern 跳过。
+> 之后每次 `git push` 更新内容，Pages 会自动重新发布，无需额外操作。
 
 ---
 
 ## 安全说明
 
-本仓库为**完全脱敏的模板**：所有内部服务地址、业务文档类型、缺陷 ID 均已移除或泛化。
-原始项目为某内部文档预处理系统的私有仓库，本 demo 仅复用其 CI 设计思路。
+本仓库为**完全脱敏的展示**：所有内部服务地址、真实业务文档类型、安全缺陷利用细节均已移除或泛化。
+原始项目（含完整源码、测试资产、综合报告）保存在**私有仓库**，不对外公开。本仓库仅复用其测试工程设计与方法论。

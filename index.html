@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>知识库文件预处理系统 · 测试工程展示（脱敏版）</title>
+<style>
+  :root{
+    --bg:#ffffff; --fg:#1f2328; --muted:#57606a; --line:#d0d7de;
+    --brand:#0969da; --green:#1a7f37; --amber:#9a6700; --red:#cf222e;
+    --card:#f6f8fa; --code:#afb8c1;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Helvetica,Arial,sans-serif;color:var(--fg);background:var(--bg);line-height:1.7}
+  a{color:var(--brand);text-decoration:none}
+  a:hover{text-decoration:underline}
+  header.nav{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10}
+  header.nav .inner{max-width:960px;margin:0 auto;padding:12px 20px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+  header.nav .logo{font-weight:700;margin-right:auto}
+  header.nav a{color:var(--muted);font-size:14px}
+  header.nav a:hover{color:var(--brand)}
+  .wrap{max-width:960px;margin:0 auto;padding:0 20px}
+  .hero{padding:64px 20px 40px;text-align:center;background:linear-gradient(180deg,#f6f8fa, #ffffff)}
+  .hero h1{font-size:32px;margin:0 0 12px}
+  .hero p{color:var(--muted);font-size:16px;max-width:680px;margin:0 auto}
+  .badge{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--muted);margin:8px 4px 0}
+  section{padding:48px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:24px;margin:0 0 8px}
+  section .lead{color:var(--muted);margin:0 0 24px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+  .card h3{margin:0 0 6px;font-size:16px}
+  .card p{margin:0;color:var(--muted);font-size:14px}
+  .metric{text-align:center}
+  .metric .num{font-size:34px;font-weight:800;color:var(--brand)}
+  .metric .num.green{color:var(--green)}
+  .metric .num.amber{color:var(--amber)}
+  .metric .label{font-size:13px;color:var(--muted);margin-top:4px}
+  .layers{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+  .layer{border:1px solid var(--line);border-radius:10px;padding:14px;background:#fff}
+  .layer .tag{font-size:12px;color:#fff;background:var(--brand);border-radius:6px;padding:2px 8px;display:inline-block;margin-bottom:8px}
+  .layer .tag.api{background:var(--green)}
+  .layer .tag.intg{background:var(--amber)}
+  .layer .tag.reg{background:var(--red)}
+  .layer h4{margin:0 0 4px;font-size:15px}
+  .layer p{margin:0;font-size:13px;color:var(--muted)}
+  .note{background:#fff8e6;border:1px solid #f0d58c;border-left:4px solid var(--amber);border-radius:8px;padding:14px 16px;color:#6b4e00;font-size:14px}
+  .sec-note{background:#eaf6ff;border:1px solid #b6e0ff;border-left:4px solid var(--brand);border-radius:8px;padding:14px 16px;color:#0a4a73;font-size:14px}
+  svg{display:block;max-width:100%;height:auto;margin:0 auto}
+  footer{padding:32px 20px;text-align:center;color:var(--muted);font-size:13px}
+  code{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 6px;font-size:13px}
+  ul.clean{margin:8px 0;padding-left:20px}
+  ul.clean li{margin:4px 0}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="inner">
+    <span class="logo">📚 测试工程展示</span>
+    <a href="#overview">项目概述</a>
+    <a href="#system">测试体系</a>
+    <a href="#cicd">CI/CD 架构</a>
+    <a href="#metrics">度量看板</a>
+    <a href="#mutation">变异测试</a>
+    <a href="#security">安全声明</a>
+  </div>
+</header>
+
+<div class="hero">
+  <h1>知识库文件预处理系统 · 测试工程展示</h1>
+  <p>一个面向电力行业知识库文档预处理系统的完整测试体系展示。本页为<strong>脱敏版</strong>，仅呈现测试架构、工程方法与量化成果，不含任何真实业务数据与安全细节。</p>
+  <div>
+    <span class="badge">Python + FastAPI</span>
+    <span class="badge">配置驱动</span>
+    <span class="badge">pytest 分层</span>
+    <span class="badge">GitHub Actions</span>
+    <span class="badge">mutmut 变异测试</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section id="overview">
+    <h2>项目概述（脱敏）</h2>
+    <p class="lead">被测系统做什么、怎么测的。</p>
+    <div class="cards">
+      <div class="card">
+        <h3>被测系统</h3>
+        <p>某电力企业知识库文件预处理系统，Python + FastAPI，基于 YAML 配置驱动，提供批处理命令行（CLI）与 REST API 两种使用方式。</p>
+      </div>
+      <div class="card">
+        <h3>处理对象</h3>
+        <p>6 类电力业务文档，涵盖运行、检修、调度等场景下的结构化文档，实现统一抽取与标准化预处理。</p>
+      </div>
+      <div class="card">
+        <h3>测试职责</h3>
+        <p>功能 / 性能 / 安全三类测试全覆盖，累计定位 16 个缺陷（功能 12 + 安全 4），并建立分层自动化回归体系。</p>
+      </div>
+      <div class="card">
+        <h3>测试产出</h3>
+        <p>pytest 自动化套件、CI 流水线、变异测试度量、缺陷回归用例库，以及综合测试报告。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="system">
+    <h2>测试体系</h2>
+    <p class="lead">用 pytest marker 把测试分成四层，互不耦合、独立运行、按需触发。</p>
+    <div class="layers">
+      <div class="layer">
+        <span class="tag">unit</span>
+        <h4>单元测试</h4>
+        <p>函数 / 类级，最快，PR 必跑。覆盖文档解析、表格合并、配置加载等核心逻辑。</p>
+      </div>
+      <div class="layer">
+        <span class="tag api">api</span>
+        <h4>接口测试</h4>
+        <p>面向 REST API 的端到端校验，覆盖正常 / 异常 / 边界输入。</p>
+      </div>
+      <div class="layer">
+        <span class="tag intg">integration</span>
+        <h4>集成测试</h4>
+        <p>跨模块协作场景，含 CLI 批处理全流程，依赖 LibreOffice / ImageMagick 环境。</p>
+      </div>
+      <div class="layer">
+        <span class="tag reg">regression</span>
+        <h4>回归测试</h4>
+        <p>缺陷修复回归 + 全量回归，标记已知问题（xfail），守护历史缺陷不复发。</p>
+      </div>
+    </div>
+    <p style="margin-top:18px;color:var(--muted);font-size:14px">运行方式举例：<code>pytest -m unit</code> 跑单元，<code>pytest -m "bug('BUG-XXX')"</code> 跑单缺陷回归。</p>
+    <p style="margin-top:8px"><a href="docs/test-strategy.md">→ 查看完整测试策略文档</a></p>
+  </section>
+
+  <section id="cicd">
+    <h2>CI/CD 架构</h2>
+    <p class="lead">GitHub Actions 流水线：常规 job 自动跑，变异测试按需手动勾选。</p>
+    <svg viewBox="0 0 680 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CI 流水线架构图">
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L8,3 L0,6 Z" fill="#57606a"/>
+        </marker>
+      </defs>
+      <!-- 触发源 -->
+      <rect x="20" y="150" width="120" height="60" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1.5"/>
+      <text x="80" y="172" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2328">Push / PR</text>
+      <text x="80" y="192" text-anchor="middle" font-size="11" fill="#57606a">代码推送</text>
+
+      <rect x="20" y="250" width="120" height="60" rx="10" fill="#eaf6ff" stroke="#b6e0ff" stroke-width="1.5"/>
+      <text x="80" y="272" text-anchor="middle" font-size="13" font-weight="700" fill="#0a4a73">手动 Dispatch</text>
+      <text x="80" y="292" text-anchor="middle" font-size="11" fill="#0a4a73">勾选变异测试</text>
+
+      <!-- 主干 job -->
+      <rect x="200" y="40" width="150" height="56" rx="10" fill="#ffffff" stroke="#0969da" stroke-width="1.5"/>
+      <text x="275" y="64" text-anchor="middle" font-size="13" font-weight="700" fill="#0969da">单元测试</text>
+      <text x="275" y="82" text-anchor="middle" font-size="11" fill="#57606a">unit · 快速</text>
+
+      <rect x="200" y="115" width="150" height="56" rx="10" fill="#ffffff" stroke="#1a7f37" stroke-width="1.5"/>
+      <text x="275" y="139" text-anchor="middle" font-size="13" font-weight="700" fill="#1a7f37">接口测试</text>
+      <text x="275" y="157" text-anchor="middle" font-size="11" fill="#57606a">api</text>
+
+      <rect x="200" y="190" width="150" height="56" rx="10" fill="#ffffff" stroke="#9a6700" stroke-width="1.5"/>
+      <text x="275" y="214" text-anchor="middle" font-size="13" font-weight="700" fill="#9a6700">集成测试</text>
+      <text x="275" y="232" text-anchor="middle" font-size="11" fill="#57606a">integration · LO</text>
+
+      <rect x="200" y="265" width="150" height="56" rx="10" fill="#ffffff" stroke="#cf222e" stroke-width="1.5"/>
+      <text x="275" y="289" text-anchor="middle" font-size="13" font-weight="700" fill="#cf222e">可靠性测试</text>
+      <text x="275" y="307" text-anchor="middle" font-size="11" fill="#57606a">reliability</text>
+
+      <!-- 变异测试 job (opt-in) -->
+      <rect x="470" y="150" width="180" height="64" rx="10" fill="#fff8e6" stroke="#f0d58c" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <text x="560" y="176" text-anchor="middle" font-size="13" font-weight="700" fill="#6b4e00">变异测试</text>
+      <text x="560" y="194" text-anchor="middle" font-size="11" fill="#6b4e00">mutmut · 按需触发</text>
+      <text x="560" y="210" text-anchor="middle" font-size="10" fill="#9a6700">if run_mutation == true</text>
+
+      <!-- 汇总 -->
+      <rect x="470" y="265" width="180" height="56" rx="10" fill="#f6f8fa" stroke="#d0d7de" stroke-width="1.5"/>
+      <text x="560" y="289" text-anchor="middle" font-size="13" font-weight="700" fill="#1f2328">测试报告 / 度量</text>
+      <text x="560" y="307" text-anchor="middle" font-size="11" fill="#57606a">覆盖率 · kill rate</text>
+
+      <!-- 连线 -->
+      <line x1="140" y1="180" x2="195" y2="68" stroke="#57606a" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="140" y1="182" x2="195" y2="143" stroke="#57606a" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="140" y1="184" x2="195" y2="218" stroke="#57606a" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="140" y1="186" x2="195" y2="293" stroke="#57606a" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="140" y1="280" x2="465" y2="180" stroke="#9a6700" stroke-width="1.5" stroke-dasharray="6 4" marker-end="url(#arrow)"/>
+      <line x1="350" y1="68" x2="465" y2="283" stroke="#57606a" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="350" y1="143" x2="465" y2="290" stroke="#57606a" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="350" y1="218" x2="465" y2="295" stroke="#57606a" stroke-width="1.5" marker-end="url(#arrow)"/>
+      <line x1="350" y1="293" x2="465" y2="293" stroke="#57606a" stroke-width="1.5" marker-end="url(#arrow)"/>
+    </svg>
+    <div class="sec-note" style="margin-top:20px">
+      <strong>关键设计：</strong>变异测试（mutmut）计算量大、耗时长，不随每次 push 自动跑。通过 <code>workflow_dispatch</code> + 输入项 <code>run_mutation</code> 实现<strong>按需手动勾选</strong>——平时省 CI 时长，需要时手动触发全量变异。详见 <a href="docs/trigger-guide.md">变异测试触发指引</a>。
+    </div>
+  </section>
+
+  <section id="metrics">
+    <h2>度量看板</h2>
+    <p class="lead">脱敏后的量化成果汇总（均为汇总级数字，不含具体业务内容）。</p>
+    <div class="cards">
+      <div class="card metric">
+        <div class="num green">100%</div>
+        <div class="label">功能测试通过率（15 / 15）</div>
+      </div>
+      <div class="card metric">
+        <div class="num green">95%</div>
+        <div class="label">接口测试通过率（19 / 20）</div>
+      </div>
+      <div class="card metric">
+        <div class="num amber">23.53%</div>
+        <div class="label">变异测试 kill rate（5656 / 24049）</div>
+      </div>
+      <div class="card metric">
+        <div class="num">5 → 6</div>
+        <div class="label">阻塞缺陷数 → 对应回归用例数</div>
+      </div>
+      <div class="card metric">
+        <div class="num">16</div>
+        <div class="label">累计定位缺陷（功能 12 + 安全 4）</div>
+      </div>
+    </div>
+    <div class="note" style="margin-top:20px">
+      <strong>关于 kill rate 说明：</strong>变异测试 kill rate 反映测试套件对代码缺陷的"捕捉力"。本项目从 12% 逐步提升到 23.53%，提升主要来自适配 pytest marker 选择策略、修复导入方式导致的 trampoline 崩溃，以及补齐高覆盖测试。该指标会随测试资产完善持续上升。
+    </div>
+  </section>
+
+  <section id="mutation">
+    <h2>变异测试按需触发</h2>
+    <p class="lead">把"贵但重要"的变异测试，做成可手动勾选的能力。</p>
+    <div class="cards">
+      <div class="card">
+        <h3>为什么按需</h3>
+        <p>全量变异测试耗时可达成百上千分钟，占满 CI 资源。日常 PR 不需要它，只有发布前或专项评估才跑。</p>
+      </div>
+      <div class="card">
+        <h3>怎么触发</h3>
+        <p>在仓库 Actions 页选择工作流 → <strong>Run workflow</strong> → 勾选 <code>run_mutation</code> → 确认即可。</p>
+      </div>
+      <div class="card">
+        <h3>配置要点</h3>
+        <p><code>on: workflow_dispatch</code> 增加布尔输入项；变异测试 job 加 <code>if: inputs.run_mutation == true</code>。模板见本仓库 <code>.github/workflows/ci.yml</code>。</p>
+      </div>
+    </div>
+    <p style="margin-top:18px"><a href="docs/trigger-guide.md">→ 查看完整的变异测试触发图文指引</a></p>
+  </section>
+
+  <section id="security">
+    <h2>安全与脱敏声明</h2>
+    <p class="lead">本仓库为公开展示用途，已做全面脱敏。</p>
+    <ul class="clean">
+      <li>✅ 不含任何真实业务文档内容、真实测试数据与真实语料。</li>
+      <li>✅ 不含内网域名、内部服务地址与任何密钥 / 凭证。</li>
+      <li>✅ 不含安全缺陷（SEC）的具体利用路径与修复细节，仅以"已定位并转研发"概括。</li>
+      <li>✅ 所有业务文档以"<strong>6 类电力业务文档</strong>"泛称呈现，不出现具体文档名。</li>
+      <li>✅ 度量数字为汇总级，无法反推具体被测对象。</li>
+    </ul>
+    <div class="sec-note" style="margin-top:16px">
+      完整源码、测试资产与综合报告保存在<strong>私有仓库</strong>，不对外公开。本仓库仅用于展示测试工程的架构设计与方法论。
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>知识库文件预处理系统 · 测试工程展示（脱敏版） · 由测试工程师独立完成</p>
+  <p>本站为 GitHub Pages 静态站点，所有内容均可公开。</p>
+</footer>
+
+</body>
+</html>
